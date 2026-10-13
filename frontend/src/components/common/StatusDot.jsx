@@ -1,33 +1,32 @@
 const STATUS_CONFIG = {
-    ok: {color: '#22c55e', label: 'operativo'},
-    running: {color: '#22c55e', label: 'en ejecución'},
-    up: {color: '#22c55e', label: 'activo'},
-    down: {color: '#ef4444', label: 'caído' },
-    stopped: { color: '#ef4444', label: 'detenido' },
-    error: { color: '#ef4444', label: 'error' },
-    unknown: { color: '#f59e0b', label: 'desconocido' },
+  ok: { color: '#22c55e' },
+  running: { color: '#22c55e' },
+  up: { color: '#22c55e' },
+  down: { color: '#ef4444' },
+  stopped: { color: '#ef4444' },
+  error: { color: '#ef4444' },
+  unknown: { color: '#f59e0b' },
 }
 
-function getConfig(status){
-    const normalized = String(status ?? 'unknown').toLowerCase()
-    return STATUS_CONFIG ?? STATUS_CONFIG.unknown
+function getConfig(status) {
+  const normalized = String(status ?? 'unknown').toLowerCase()
+  return STATUS_CONFIG[normalized] ?? STATUS_CONFIG.unknown
 }
 
-export default function statusDot({status, title}){
-    const config = getConfig(status)
+export default function StatusDot({ status, title }) {
+  const config = getConfig(status)
 
-    return (
+  return (
     <span
-      title={title ?? config.label}
-      aria-label={title ?? config.label}
+      title={title ?? status ?? 'unknown'}
+      aria-label={title ?? status ?? 'unknown'}
       style={{
         display: 'inline-block',
-        width: '0.75rem',
-        height: '0.75rem',
+        width: '12px',
+        height: '12px',
         borderRadius: '9999px',
         backgroundColor: config.color,
-        marginRight: '0.5rem',
-        boxShadow: `0 0 0 2px ${config.color}33`,
+        boxShadow: `0 0 0 3px ${config.color}22`,
         flexShrink: 0,
       }}
     />
