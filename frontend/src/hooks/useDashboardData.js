@@ -1,16 +1,17 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
-export default function useDashboardData(){
-    const [health, setHealth] = useState(null)
+export default function useDashboardData() {
+  const [health, setHealth] = useState(null)
   const [system, setSystem] = useState(null)
   const [containers, setContainers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    let intervalId
+
     const loadDashboard = async () => {
       try {
-        setLoading(true)
         setError(null)
 
         const [healthResponse, systemResponse, containerResponse] = await Promise.all([
@@ -40,14 +41,17 @@ export default function useDashboardData(){
         setHealth(healthData)
         setSystem(systemData)
         setContainers(containersData)
+        setLoading(false)
       } catch (err) {
         setError(err.message)
-      } finally {
         setLoading(false)
       }
     }
 
     loadDashboard()
+    intervalId = setInterval(loadDashboard, 5000)
+
+    return () => clearInterval(intervalId)
   }, [])
 
   return {
@@ -57,5 +61,4 @@ export default function useDashboardData(){
     loading,
     error,
   }
-
 }
