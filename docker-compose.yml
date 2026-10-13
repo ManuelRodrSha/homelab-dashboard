@@ -1,0 +1,12 @@
+services:
+  backend:  
+    build:
+      context: ./backend
+    container_name: homelab-backend
+    ports:
+      - "8000:8000"
+    volumes: 
+      - ./backend:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - PYTHONUNBUFFERED=1
