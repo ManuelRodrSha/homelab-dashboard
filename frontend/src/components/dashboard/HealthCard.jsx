@@ -12,11 +12,12 @@ export default function HealthCard({health}){
             >
                 <h2> Estado de la API</h2>
 
-                <p style={{ display: 'flex', alignItems: 'center', margin: 0 }}>
-                    <StatusDot status={health.status} />
+                <p style={{ display: 'flex', alignItems: 'center', margin: 0, gap: '0.5rem' }}>
+                    
                     <span>
                     Estado: <strong>{health.status}</strong>
                     </span>
+                    <StatusDot status={health.status} /> 
                 </p>
             </section>
     )
