@@ -1,6 +1,6 @@
 import docker as docker_sdk
 
-from app.models.docker import DockerContainer
+from app.schemas.docker import DockerContainer
 
 class DockerService:
     def get_running_containers(self) -> list[DockerContainer]:

@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient 
 
 from app.main import app
-from app.models.docker import DockerContainer
+from app.schemas.docker import DockerContainer
 import app.api.docker as docker_api
 
 client = TestClient(app)

@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from docker.errors import DockerException
 
 from app.services.docker_service import DockerService
-from app.models.docker import DockerContainer
+from app.schemas.docker import DockerContainer
 
 router = APIRouter(prefix="/docker", tags=["docker"])
 

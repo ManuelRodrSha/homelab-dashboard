@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 
 import psutil
 
-from app.models.system import SystemStatus
+from app.schemas.system import SystemStatus
 
 class SystemService:
     def get_status(self) -> SystemStatus:
